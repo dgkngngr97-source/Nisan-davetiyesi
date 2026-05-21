@@ -34,10 +34,10 @@ body {
     display: flex;
 }
 
-/* Zarf Ana Kasası - Ekranda doygun ve büyük durması için boyutlar dengelendi */
+/* Zarf Ana Kasası */
 .zarf-wrapper {
     position: relative;
-    width: 100%;
+    width: 90%;
     max-width: 360px;
     height: 260px;
     display: flex;
@@ -53,7 +53,7 @@ body {
     z-index: 1;
 }
 
-/* Zarf Görselleri - Ekrana tam yayılması için stretch (fill) yapıldı */
+/* Zarf Ön Gövdesi (Alt Parça) */
 .zarf-on-img {
     position: absolute;
     width: 100%;
@@ -65,13 +65,14 @@ body {
     pointer-events: none;
 }
 
+/* --- SİMETRİSİ DÜZELTİLEN ÜST KAPAK --- */
 .zarf-kapak-kasa {
     position: absolute;
     width: 100%;
-    height: 100%;
-    top: 0;
+    height: 105%;         /* Boyutu alt gövdeyle sıfıra sıfır birleşecek şekilde esnetildi */
+    top: -12px;           /* Kapak dikey eksende milimetrik olarak yukarı taşındı */
     left: 0;
-    z-index: 4;
+    z-index: 4;           /* Başlangıçta ön gövdenin üstünde durur */
     transform-origin: top center;
     transition: transform 1s ease-in-out;
     pointer-events: none;
@@ -83,15 +84,15 @@ body {
     object-fit: fill;
 }
 
-/* Mühür - Tam Merkeze ve ideal boyuta sabitlendi */
+/* --- ÇİZGİYE TAM ORTALANAN MÜHÜR --- */
 .muhur-buton {
     position: absolute;
     width: 75px;
     height: 75px;
-    z-index: 5;
+    z-index: 5;           /* Her zaman en üst katmanda */
     cursor: pointer;
-    top: calc(50% - 37.5px);
-    left: calc(50% - 35px);
+    top: 34.5%;           /* Kapak yukarı kayınca tam kesişim çizgisine ortalandı */
+    left: calc(50% - 37.5px);
     transition: transform 0.3s ease, opacity 0.4s;
 }
 
@@ -110,13 +111,13 @@ body {
     color: #4a3f35;
 }
 
-/* --- KARTIN BAŞLANGIÇTA GİZLENMESİ (SIFIR TAŞMA HİLESİ) --- */
+/* Davetiye Kartı (Mühür kapalıyken sıfır taşma hilesi) */
 .davetiye-kart {
     position: absolute;
     width: 95%;
     max-width: 340px;
     z-index: 2;
-    opacity: 0; /* İlk başta tamamen gizli, taşma şansı sıfır */
+    opacity: 0; 
     transform: scale(0.85);
     transition: transform 1.2s 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s 0.4s ease;
     pointer-events: none;
@@ -129,7 +130,7 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
-/* --- MÜHRE BASILDIĞINDA CANLANACAK ŞOV --- */
+/* --- ANIMASYON ANINDAKİ DEĞİŞİMLER --- */
 .zarf-acildi .zarf-kapak-kasa {
     transform: rotateX(160deg);
 }
@@ -140,8 +141,8 @@ body {
 }
 
 .zarf-acildi .davetiye-kart {
-    opacity: 1; /* Kart parlayarak ortaya çıkar */
-    transform: translateY(-160px) scale(1.05); /* Yukarı süzülür ve büyür */
+    opacity: 1; 
+    transform: translateY(-160px) scale(1.05); 
     z-index: 10;
 }
 
