@@ -27,74 +27,64 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    perspective: 1500px; /* 3D kapak dönüşü için gerekli derinlik */
+    perspective: 1500px;
 }
 
 .sahne.aktif {
     display: flex;
 }
 
-/* Zarf Ana Kasası - dikey davetiye kartına uygun dikey dikdörtgen bir oran */
+/* Zarf Ana Kasası */
 .zarf-wrapper {
     position: relative;
     width: 90%;
     max-width: 320px;
-    height: 380px; /* Davetiye kartını tam saracak dikey oran */
+    height: 220px; /* Zarf görsellerine tam uyan yatay alan */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.zarf-ic {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(222, 214, 204, 0.2);
-    border-radius: 8px;
-    z-index: 1;
-}
+/* --- TAŞMAYI ÖNLEYEN VE KARTI GİZLEYEN AYARLAR --- */
 
-/* --- KRİTİK HİZALAMA GÜNCELLEMELERİ --- */
-
-/* Davetiye Kartı - Zarfın içinde gizli kalacak ana katman */
+/* Davetiye Kartı */
 .davetiye-kart {
     position: absolute;
-    width: 88%; /* Kart zarfın biraz içinde kalır */
-    top: 5px;   /* Kartın üst kenarı */
-    z-index: 2; /* Zarfın iç katmanı (ön ve arka arasında) */
+    width: 82%; 
+    top: 35px; /* Kartı aşağı kaydırarak üstten taşmasını önledik */
+    z-index: 2; /* Ön gövdenin arkasında kalması için */
     transition: transform 1.5s 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    transform: translateY(0); /* Başlangıç konumu */
+    transform: translateY(0);
 }
 
 .davetiye-kart-img {
     width: 100%;
     height: auto;
-    object-fit: contain; /* Oranı koru ama sığdır */
+    object-fit: contain;
     border-radius: 6px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-/* Zarf Ön Gövdesi (Alt Parça) - Kartın alt yarısını kapatır */
+/* Zarf Ön Gövdesi (Alt Parça) */
 .zarf-on-img {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Oranı koru ama sığdır */
+    object-fit: contain;
     bottom: 0;
     left: 0;
-    z-index: 3; /* Kartın önünde durur */
-    pointer-events: none; /* Tıklamayı mühre geçirir */
+    z-index: 4; /* Kartın ve kapağın önünde durarak alttan taşmayı kapatır */
+    pointer-events: none;
 }
 
-/* Zarf Üst Kapağı (Yukarı Doğru Açılacak Parça) */
+/* Zarf Üst Kapağı */
 .zarf-kapak-kasa {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 4; /* Kapak başlangıçta en üstte, mühürle beraber durur */
-    transform-origin: top center; /* Tam üst çizgiden geriye doğru dönecek */
+    z-index: 3; /* Başlangıçta kartın önünde */
+    transform-origin: top center;
     transition: transform 1.3s ease-in-out;
     transform-style: preserve-3d;
     pointer-events: none;
@@ -103,18 +93,18 @@ body {
 .zarf-ust-img {
     width: 100%;
     height: 100%;
-    object-fit: contain; /* Oranı koru ama sığdır */
+    object-fit: contain;
 }
 
 /* Mühür */
 .muhur-buton {
     position: absolute;
-    width: 70px;
-    height: 70px;
-    z-index: 5; /* Kapağın da üstünde */
+    width: 65px;
+    height: 65px;
+    z-index: 5; /* Her şeyin üstünde */
     cursor: pointer;
-    top: 38%; /* Mührü zarf birleşim çizgisine tam oturtur (karta göre ayarlandı) */
-    left: calc(50% - 35px);
+    top: 36%; 
+    left: calc(50% - 32.5px);
     transition: transform 0.3s ease, opacity 0.5s;
 }
 
@@ -124,7 +114,7 @@ body {
 
 .ac-notu {
     position: absolute;
-    bottom: -40px;
+    bottom: -50px;
     width: 100%;
     text-align: center;
     font-size: 0.85rem;
@@ -135,8 +125,8 @@ body {
 
 /* --- ANIMASYON ANINDAKİ DEĞİŞİMLER --- */
 .zarf-acildi .zarf-kapak-kasa {
-    transform: rotateX(150deg); /* Kapağı yukarı doğru 3D olarak döndürür */
-    z-index: 1; /* Döndüğü an kartın arkasında kalması için z-index düşer */
+    transform: rotateX(150deg); 
+    z-index: 1; /* Kapak açılınca arkaya gizlenir */
 }
 
 .zarf-acildi .muhur-buton {
@@ -145,8 +135,8 @@ body {
 }
 
 .zarf-acildi .davetiye-kart {
-    transform: translateY(-290px); /* Kartı yukarı dikey olarak fırlatır */
-    z-index: 10; /* Kart fırlayınca her şeyin en önüne geçer */
+    transform: translateY(-260px); /* Kartı yukarı fırlatır */
+    z-index: 10; /* Fırlayınca her şeyin önüne geçer */
 }
 
 /* SAHNE 2: DETAYLAR BÖLÜMÜ */
