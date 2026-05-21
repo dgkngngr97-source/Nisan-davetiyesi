@@ -27,50 +27,75 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    perspective: 1000px; /* 3D kapak dönüş efekti için gerekli */
+    perspective: 1500px; /* 3D kapak dönüşü için gerekli derinlik */
 }
 
 .sahne.aktif {
     display: flex;
 }
 
+/* Zarf Ana Kasası - dikey davetiye kartına uygun dikey dikdörtgen bir oran */
 .zarf-wrapper {
     position: relative;
     width: 90%;
-    max-width: 350px;
-    height: 250px; /* Telefon ekranlarına tam sığacak dengeli yükseklik */
+    max-width: 320px;
+    height: 380px; /* Davetiye kartını tam saracak dikey oran */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .zarf-ic {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(24cf, 243, 235, 0.15);
-    border-radius: 4px;
+    background-color: rgba(222, 214, 204, 0.2);
+    border-radius: 8px;
     z-index: 1;
 }
 
-/* Alt gövde ve üst kapak resimlerini milimetrik eşitleyen CSS */
+/* --- KRİTİK HİZALAMA GÜNCELLEMELERİ --- */
+
+/* Davetiye Kartı - Zarfın içinde gizli kalacak ana katman */
+.davetiye-kart {
+    position: absolute;
+    width: 88%; /* Kart zarfın biraz içinde kalır */
+    top: 5px;   /* Kartın üst kenarı */
+    z-index: 2; /* Zarfın iç katmanı (ön ve arka arasında) */
+    transition: transform 1.5s 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transform: translateY(0); /* Başlangıç konumu */
+}
+
+.davetiye-kart-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Oranı koru ama sığdır */
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Zarf Ön Gövdesi (Alt Parça) - Kartın alt yarısını kapatır */
 .zarf-on-img {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: contain; /* Oranı koru ama sığdır */
     bottom: 0;
     left: 0;
-    z-index: 3; /* Kartın önünde durmalı */
-    pointer-events: none;
+    z-index: 3; /* Kartın önünde durur */
+    pointer-events: none; /* Tıklamayı mühre geçirir */
 }
 
+/* Zarf Üst Kapağı (Yukarı Doğru Açılacak Parça) */
 .zarf-kapak-kasa {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 4; /* Başlangıçta en üstte, mühürle beraber durur */
+    z-index: 4; /* Kapak başlangıçta en üstte, mühürle beraber durur */
     transform-origin: top center; /* Tam üst çizgiden geriye doğru dönecek */
-    transition: transform 1.2s ease-in-out;
+    transition: transform 1.3s ease-in-out;
     transform-style: preserve-3d;
     pointer-events: none;
 }
@@ -78,7 +103,7 @@ body {
 .zarf-ust-img {
     width: 100%;
     height: 100%;
-    object-fit: fill;
+    object-fit: contain; /* Oranı koru ama sığdır */
 }
 
 /* Mühür */
@@ -88,7 +113,7 @@ body {
     height: 70px;
     z-index: 5; /* Kapağın da üstünde */
     cursor: pointer;
-    top: 35%; /* Mührü zarf birleşim çizgisine tam oturtur */
+    top: 38%; /* Mührü zarf birleşim çizgisine tam oturtur (karta göre ayarlandı) */
     left: calc(50% - 35px);
     transition: transform 0.3s ease, opacity 0.5s;
 }
@@ -108,23 +133,6 @@ body {
     color: #4a3f35;
 }
 
-/* Davetiye Kartı */
-.davetiye-kart {
-    position: absolute;
-    width: 90%;
-    left: 5%;
-    bottom: 10px;
-    z-index: 2; /* Zarfın içinde (ön gövdenin arkasında) gizli */
-    transition: transform 1.4s 0.6s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.davetiye-kart-img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
 /* --- ANIMASYON ANINDAKİ DEĞİŞİMLER --- */
 .zarf-acildi .zarf-kapak-kasa {
     transform: rotateX(150deg); /* Kapağı yukarı doğru 3D olarak döndürür */
@@ -137,11 +145,11 @@ body {
 }
 
 .zarf-acildi .davetiye-kart {
-    transform: translateY(-240px) scale(1.03); /* Kartı yukarı fırlatır */
+    transform: translateY(-290px); /* Kartı yukarı dikey olarak fırlatır */
     z-index: 10; /* Kart fırlayınca her şeyin en önüne geçer */
 }
 
-/* Sahne 2: Detaylar */
+/* SAHNE 2: DETAYLAR BÖLÜMÜ */
 .detay-sahne {
     width: 100%;
     max-width: 420px;
@@ -150,11 +158,12 @@ body {
     display: none;
     opacity: 0;
     transition: opacity 1s ease;
+    position: relative;
 }
 
 .kose-cicek {
     position: fixed;
-    width: 90px;
+    width: 100px;
     z-index: -1;
     pointer-events: none;
 }
