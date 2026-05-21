@@ -19,7 +19,7 @@ body {
     align-items: center;
 }
 
-/* Sahnelerin Ortak Yapısı */
+/* Sahne 1: Zarf Modu */
 .sahne {
     width: 100%;
     height: 100vh;
@@ -27,38 +27,70 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    opacity: 1;
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    perspective: 1000px; /* 3D kapak dönüş efekti için gerekli */
 }
 
 .sahne.aktif {
     display: flex;
 }
 
-/* Sahne 1: Zarf Görünümü */
 .zarf-wrapper {
     position: relative;
     width: 90%;
-    max-width: 340px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 350px;
+    height: 250px; /* Telefon ekranlarına tam sığacak dengeli yükseklik */
 }
 
-.zarf-ana-img {
+.zarf-ic {
+    position: absolute;
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.1));
+    height: 100%;
+    background-color: rgba(24cf, 243, 235, 0.15);
+    border-radius: 4px;
+    z-index: 1;
 }
 
+/* Alt gövde ve üst kapak resimlerini milimetrik eşitleyen CSS */
+.zarf-on-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    bottom: 0;
+    left: 0;
+    z-index: 3; /* Kartın önünde durmalı */
+    pointer-events: none;
+}
+
+.zarf-kapak-kasa {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 4; /* Başlangıçta en üstte, mühürle beraber durur */
+    transform-origin: top center; /* Tam üst çizgiden geriye doğru dönecek */
+    transition: transform 1.2s ease-in-out;
+    transform-style: preserve-3d;
+    pointer-events: none;
+}
+
+.zarf-ust-img {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+/* Mühür */
 .muhur-buton {
     position: absolute;
-    width: 75px;
-    height: 75px;
+    width: 70px;
+    height: 70px;
+    z-index: 5; /* Kapağın da üstünde */
     cursor: pointer;
-    top: 40%;
-    transition: transform 0.3s ease;
+    top: 35%; /* Mührü zarf birleşim çizgisine tam oturtur */
+    left: calc(50% - 35px);
+    transition: transform 0.3s ease, opacity 0.5s;
 }
 
 .muhur-buton:hover {
@@ -67,61 +99,57 @@ body {
 
 .ac-notu {
     position: absolute;
-    bottom: -50px;
+    bottom: -40px;
     width: 100%;
     text-align: center;
     font-size: 0.85rem;
     font-weight: 600;
     letter-spacing: 1px;
+    color: #4a3f35;
 }
 
-/* Sahne 2: Kartın Büyüyerek Açılması Animasyonu */
-#kart-sahne {
-    transform: scale(0.7);
-    opacity: 0;
-}
-
-#kart-sahne.aktif {
-    transform: scale(1);
-    opacity: 1;
-}
-
+/* Davetiye Kartı */
 .davetiye-kart {
+    position: absolute;
     width: 90%;
-    max-width: 360px;
-    text-align: center;
+    left: 5%;
+    bottom: 10px;
+    z-index: 2; /* Zarfın içinde (ön gövdenin arkasında) gizli */
+    transition: transform 1.4s 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .davetiye-kart-img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.kaydir-notu {
-    margin-top: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: #4a3f35;
-    animation: bounce 2s infinite;
+/* --- ANIMASYON ANINDAKİ DEĞİŞİMLER --- */
+.zarf-acildi .zarf-kapak-kasa {
+    transform: rotateX(150deg); /* Kapağı yukarı doğru 3D olarak döndürür */
+    z-index: 1; /* Döndüğü an kartın arkasında kalması için z-index düşer */
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    60% { transform: translateY(-5px); }
+.zarf-acildi .muhur-buton {
+    opacity: 0;
+    pointer-events: none;
 }
 
-/* Sahne 3: Detaylar Bölümü */
+.zarf-acildi .davetiye-kart {
+    transform: translateY(-240px) scale(1.03); /* Kartı yukarı fırlatır */
+    z-index: 10; /* Kart fırlayınca her şeyin en önüne geçer */
+}
+
+/* Sahne 2: Detaylar */
 .detay-sahne {
     width: 100%;
     max-width: 420px;
     margin: 0 auto;
-    padding: 0 20px 40px 20px;
+    padding: 20px;
     display: none;
     opacity: 0;
-    transition: opacity 0.8s ease;
+    transition: opacity 1s ease;
 }
 
 .kose-cicek {
@@ -134,7 +162,7 @@ body {
 .sag-alt { bottom: 0; right: 0; transform: rotate(180deg); }
 
 .countdown-section, .toren-yeri-kart, .rsvp-kart {
-    background-color: rgba(255, 255, 255, 0.97);
+    background-color: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(5px);
     border-radius: 16px;
     padding: 30px 20px;
@@ -170,7 +198,6 @@ body {
     border: 1px solid #dcd1c4;
     border-radius: 8px;
     font-family: 'Montserrat', sans-serif;
-    outline: none;
 }
 .radio-secenekleri { display: flex; justify-content: space-around; margin-bottom: 15px; font-size: 0.9rem; }
 .btn-gonder {
