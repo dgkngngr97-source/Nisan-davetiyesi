@@ -4,18 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doğukan & Ege Nişan Davetiyesi</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <!-- FontAwesome İkonları -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- MÜZİK (İsteğe Bağlı) -->
-    <!-- <audio id="bg-music" src="resimler/muzik.mp3" loop></audio> -->
-
-    <!-- HERO ALANI -->
     <section class="hero">
         <div class="hero-content">
             <p class="subtitle">Sonsuz Bir Hikayenin İlk Sayfası...</p>
@@ -25,7 +19,6 @@
         </div>
     </section>
 
-    <!-- GERİ SAYIM SAYACI -->
     <section class="countdown-section">
         <h3>Mutluluğa Kalan Süre</h3>
         <div id="countdown">
@@ -36,52 +29,90 @@
         </div>
     </section>
 
-    <!-- DETAYLAR VE HARİTA -->
     <section class="details">
         <div class="card">
-            <i class="fa-solid fa-heart-half-stroke icon"></i>
-            <p class="invitation-text">"Hayatımızın en özel imzasını atmadan önce, sevdiklerimizle bir arada olacağımız, çiçekler ve kahkahalarla dolu bu özel nişan günümüzde sizleri de aramızda görmekten mutluluk duyarız."</p>
-            <div class="info-item">
-                <i class="fa-regular fa-clock"></i>
-                <span>Saat: 19:00</span>
+            <div class="flower-icon">🌾</div>
+            <p class="invitation-text">
+                "Hayatımızın en özel imzasını atmadan önce, sevdiklerimizle bir arada olacağımız, çiçekler ve kahkahalarla dolu bu özel nişan günümüzde sizleri de aramızda görmekten mutluluk duyarız."
+            </p>
+            <div class="info-items">
+                <div class="info-item">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span>14 Kasım 2026, Cumartesi</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>Saat: 19:00</span>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span>Cafe Home Restaurant, Atakum / Samsun</span>
+                </div>
             </div>
-            <!-- Google Haritalar Linki (Cafe Home Restaurant Atakum) -->
-            <a href="https://maps.google.com" target="_blank" class="btn-map">
+            
+            <a href="https://www.google.com/maps/search/?api=1&query=cafe+home+restaurant+atakum+samsun" target="_blank" class="btn-map">
                 <i class="fa-solid fa-location-dot"></i> Yol Tarifi Al
             </a>
         </div>
     </section>
 
-    <!-- FOTOĞRAF GALERİSİ -->
     <section class="gallery">
         <h3>Bizden Kareler</h3>
+        <p class="gallery-subtitle">En güzel anılarımızdan birkaç parça...</p>
         <div class="gallery-grid">
-            <img src="resimler/foto1.jpg" alt="Doğukan & Ege">
-            <img src="resimler/foto2.jpg" alt="Doğukan & Ege">
-            <img src="resimler/foto3.jpg" alt="Doğukan & Ege">
-            <img src="resimler/foto4.jpg" alt="Doğukan & Ege">
+            <div class="gallery-item"><img src="resimler/foto1.jpg" alt="Doğukan & Ege 1"></div>
+            <div class="gallery-item"><img src="resimler/foto2.jpg" alt="Doğukan & Ege 2"></div>
+            <div class="gallery-item"><img src="resimler/foto3.jpg" alt="Doğukan & Ege 3"></div>
+            <div class="gallery-item"><img src="resimler/foto4.jpg" alt="Doğukan & Ege 4"></div>
         </div>
     </section>
 
-    <!-- LCV / RSVP FORMU -->
     <section class="rsvp">
-        <h3>Katılım Durumu</h3>
-        <form id="rsvp-form">
-            <input type="text" placeholder="Adınız Soyadınız" required>
-            <div class="radio-group">
-                <label><input type="radio" name="katilim" value="evet" checked> Seve seve geliyorum! 🎉</label>
-                <label><input type="radio" name="katilim" value="hayir"> Maalesef gelemiyorum. 😔</label>
-            </div>
-            <select>
-                <option value="1">1 Kişi</option>
-                <option value="2">2 Kişi</option>
-                <option value="3">3+ Kişi</option>
-            </select>
-            <textarea placeholder="Çifte Notunuz (Opsiyonel)"></textarea>
-            <button type="submit">Formu Gönder</button>
-        </form>
+        <div class="rsvp-container">
+            <h3>Katılım Durumu</h3>
+            <p class="rsvp-subtitle">Masa düzeni ve hazırlıklar için lütfen katılım durumunuzu bildiriniz.</p>
+            <form id="rsvp-form">
+                <div class="input-group">
+                    <i class="fa-regular fa-user"></i>
+                    <input type="text" placeholder="Adınız Soyadınız" required>
+                </div>
+                
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="katilim" value="evet" checked>
+                        <span>Seve seve geliyorum! 🎉</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="katilim" value="hayir">
+                        <span>Maalesef gelemiyorum. 😔</span>
+                    </label>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fa-solid fa-users"></i>
+                    <select required>
+                        <option value="" disabled selected>Kaç Kişi Katılacaksınız?</option>
+                        <option value="1">1 Kişi</option>
+                        <option value="2">2 Kişi</option>
+                        <option value="3">3 Kişi</option>
+                        <option value="4+">4+ Kişi</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <i class="fa-regular fa-comment"></i>
+                    <textarea placeholder="Çifte Notunuz (Opsiyonel)"></textarea>
+                </div>
+                
+                <button type="submit" class="btn-submit">Formu Gönder</button>
+            </form>
+        </div>
     </section>
+
+    <footer>
+        <p>Doğukan & Ege © 2026 - Sonsuza Dek Beraber</p>
+    </footer>
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
