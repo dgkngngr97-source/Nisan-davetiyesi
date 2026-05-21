@@ -10,6 +10,17 @@
 </head>
 <body>
 
+    <!-- BOHEM & ÇİÇEK TEMALI BOZCAADA GİRİŞ EKRANI -->
+    <div id="intro-screen">
+        <div class="stars"></div>
+        <div class="windmill">
+            <div class="windmill-body"></div>
+            <div class="windmill-sails"></div>
+        </div>
+        <div class="couple-walking"></div>
+        <div class="ground"></div>
+    </div>
+
     <div class="davetiye-konteyner">
         
         <div id="zarf-sahne" class="sahne aktif">
@@ -92,5 +103,22 @@
     </div>
 
     <script src="script.js"></script>
+
+    <!-- SAHNELERİ YÖNETEN EK JAVASCRIPT KODU -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const introScreen = document.getElementById("intro-screen");
+            
+            // 5.5 saniye sonra Bozcaada gün batımı perdesini yukarı doğru pürüzsüzce kaydırarak kaldır
+            setTimeout(() => {
+                if(introScreen) {
+                    introScreen.classList.add("fade-out");
+                    setTimeout(() => {
+                        introScreen.style.display = "none";
+                    }, 1200);
+                }
+            }, 5500);
+        });
+    </script>
 </body>
 </html>
