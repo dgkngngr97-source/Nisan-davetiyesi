@@ -1,31 +1,25 @@
 const muhurBtn = document.getElementById("muhur-btn");
 const zarfSahne = document.getElementById("zarf-sahne");
-const kartSahne = document.getElementById("kart-sahne");
 const detaySahne = document.getElementById("detay-sahne");
 
 muhurBtn.addEventListener("click", function() {
-    // 1. Zarf sahnesini yumuşakça kaybet
-    zarfSahne.style.opacity = "0";
+    // Zarf açılma animasyonunu tetikle (Kapak döner, kart fırlar)
+    zarfSahne.classList.add("zarf-acildi");
     
+    // Kart havada süzüldükten sonra detayları pürüzsüzce ekrana getir
     setTimeout(() => {
-        zarfSahne.classList.remove("aktif");
-        
-        // 2. Kart sahnesini aç ve büyütme animasyonunu tetikle
-        kartSahne.classList.add("aktif");
-        
-        // Detayları da görünürlük moduna al ama henüz tam opak yapma
         detaySahne.style.display = "block";
         
-        // 3. Kart açıldıktan hemen sonra detayları ve kaydırma iznini ver
         setTimeout(() => {
+            zarfSahne.style.opacity = "0";
             detaySahne.style.opacity = "1";
-            document.body.style.overflowY = "auto";
-        }, 600);
+            detaySahne.scrollIntoView({ behavior: "smooth" });
+        }, 100);
         
-    }, 500);
+    }, 2500); // 2.5 saniyelik harika sinematik bekleme süresi
 });
 
-// Geri Sayım Sayacı (14 Kasım 2026)
+// Geri Sayım Sayacı
 const hedefTarih = new Date("November 14, 2026 19:00:00").getTime();
 const sayac = setInterval(() => {
     const simdi = new Date().getTime();
