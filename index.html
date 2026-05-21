@@ -4,114 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doğukan & Ege Nişan Davetiyesi</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <section class="hero">
-        <div class="hero-content">
-            <p class="subtitle">Sonsuz Bir Hikayenin İlk Sayfası...</p>
-            <h1>Doğukan & Ege</h1>
-            <p class="date">14 Kasım 2026 | Cumartesi</p>
-            <p class="venue">Cafe Home Restaurant - Atakum / Samsun</p>
-        </div>
-    </section>
-
-    <section class="countdown-section">
-        <h3>Mutluluğa Kalan Süre</h3>
-        <div id="countdown">
-            <div class="time-box"><span id="days">00</span><p>Gün</p></div>
-            <div class="time-box"><span id="hours">00</span><p>Saat</p></div>
-            <div class="time-box"><span id="minutes">00</span><p>Dakika</p></div>
-            <div class="time-box"><span id="seconds">00</span><p>Saniye</p></div>
-        </div>
-    </section>
-
-    <section class="details">
-        <div class="card">
-            <div class="flower-icon">🌾</div>
-            <p class="invitation-text">
-                "Hayatımızın en özel imzasını atmadan önce, sevdiklerimizle bir arada olacağımız, çiçekler ve kahkahalarla dolu bu özel nişan günümüzde sizleri de aramızda görmekten mutluluk duyarız."
-            </p>
-            <div class="info-items">
-                <div class="info-item">
-                    <i class="fa-regular fa-calendar-days"></i>
-                    <span>14 Kasım 2026, Cumartesi</span>
+    <div class="davetiye-konteyner">
+        
+        <div id="zarf-sahne" class="sahne aktif">
+            <div class="zarf-wrapper">
+                <div class="zarf-ic"></div>
+                
+                <div class="davetiye-kart" id="davetiye-kart">
+                    <div class="kart-icerik">
+                        <span class="boho-dal">🌾</span>
+                        <p class="kart-ust-not">Sonsuz Bir Hikayenin İlk Sayfası...</p>
+                        <h2 class="kart-isimler">Doğukan & Ege</h2>
+                        <p class="kart-davet">Evliliğe giden bu güzel yolda, mutluluğumuzu resmileştireceğimiz ilk adıma davetlisiniz.</p>
+                        <div class="kart-cizgi"></div>
+                        <p class="kart-tarih">14 Kasım 2026 | Cumartesi</p>
+                        <p class="kart-saat">Saat: 19:00</p>
+                        <p class="kart-mekan">Cafe Home Restaurant - Atakum</p>
+                    </div>
                 </div>
-                <div class="info-item">
-                    <i class="fa-regular fa-clock"></i>
-                    <span>Saat: 19:00</span>
-                </div>
-                <div class="info-item">
-                    <i class="fa-solid fa-map-location-dot"></i>
-                    <span>Cafe Home Restaurant, Atakum / Samsun</span>
+
+                <div class="zarf-on"></div>
+                
+                <div class="zarf-kapak"></div>
+                
+                <img src="resimler/muhur.png" class="muhur-buton" id="muhur-btn" alt="Mühür">
+                
+                <p class="ac-notu">Açmak İçin Mühüre Tıklayın</p>
+            </div>
+        </div>
+
+        <div id="detay-sahne" class="detay-sahne">
+            
+            <div class="countdown-section">
+                <h3>Mutluluğa Kalan Süre</h3>
+                <div id="countdown">
+                    <div class="time-box"><span id="days">00</span><p>Gün</p></div>
+                    <div class="time-box"><span id="hours">00</span><p>Saat</p></div>
+                    <div class="time-box"><span id="minutes">00</span><p>Dakika</p></div>
+                    <div class="time-box"><span id="seconds">00</span><p>Saniye</p></div>
                 </div>
             </div>
-            
-            <a href="https://www.google.com/maps/search/?api=1&query=cafe+home+restaurant+atakum+samsun" target="_blank" class="btn-map">
-                <i class="fa-solid fa-location-dot"></i> Yol Tarifi Al
-            </a>
-        </div>
-    </section>
 
-    <section class="gallery">
-        <h3>Bizden Kareler</h3>
-        <p class="gallery-subtitle">En güzel anılarımızdan birkaç parça...</p>
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="resimler/foto1.jpg" alt="Doğukan & Ege 1"></div>
-            <div class="gallery-item"><img src="resimler/foto2.jpg" alt="Doğukan & Ege 2"></div>
-            <div class="gallery-item"><img src="resimler/foto3.jpg" alt="Doğukan & Ege 3"></div>
-            <div class="gallery-item"><img src="resimler/foto4.jpg" alt="Doğukan & Ege 4"></div>
-        </div>
-    </section>
+            <div class="toren-yeri-kart">
+                <i class="fa-solid fa-map-location-dot mekan-ikon"></i>
+                <h3>TÖREN YERİ</h3>
+                <p class="mekan-adi">Cafe Home Restaurant</p>
+                <p class="mekan-adres">Atakum / Samsun</p>
+                
+                <a href="https://maps.google.com/?q=cafe+home+restaurant+atakum+samsun" target="_blank" class="btn-harita">
+                    <i class="fa-solid fa-location-arrow"></i> Yol Tarifi Al
+                </a>
+            </div>
 
-    <section class="rsvp">
-        <div class="rsvp-container">
-            <h3>Katılım Durumu</h3>
-            <p class="rsvp-subtitle">Masa düzeni ve hazırlıklar için lütfen katılım durumunuzu bildiriniz.</p>
-            <form id="rsvp-form">
-                <div class="input-group">
-                    <i class="fa-regular fa-user"></i>
+            <div class="rsvp-kart">
+                <h3>Katılım Durumu</h3>
+                <p class="rsvp-alt-not">Lütfen katılım durumunuzu bildiriniz.</p>
+                <form id="rsvp-form">
                     <input type="text" placeholder="Adınız Soyadınız" required>
-                </div>
-                
-                <div class="radio-group">
-                    <label class="radio-label">
-                        <input type="radio" name="katilim" value="evet" checked>
-                        <span>Seve seve geliyorum! 🎉</span>
-                    </label>
-                    <label class="radio-label">
-                        <input type="radio" name="katilim" value="hayir">
-                        <span>Maalesef gelemiyorum. 😔</span>
-                    </label>
-                </div>
-                
-                <div class="input-group">
-                    <i class="fa-solid fa-users"></i>
+                    <div class="radio-secenekleri">
+                        <label><input type="radio" name="katilim" value="evet" checked> Geliyorum 🎉</label>
+                        <label><input type="radio" name="katilim" value="hayir"> Gelemiyorum 😔</label>
+                    </div>
                     <select required>
-                        <option value="" disabled selected>Kaç Kişi Katılacaksınız?</option>
+                        <option value="" disabled selected>Kişi Sayısı</option>
                         <option value="1">1 Kişi</option>
                         <option value="2">2 Kişi</option>
-                        <option value="3">3 Kişi</option>
-                        <option value="4+">4+ Kişi</option>
+                        <option value="3+">3+ Kişi</option>
                     </select>
-                </div>
-                
-                <div class="input-group">
-                    <i class="fa-regular fa-comment"></i>
-                    <textarea placeholder="Çifte Notunuz (Opsiyonel)"></textarea>
-                </div>
-                
-                <button type="submit" class="btn-submit">Formu Gönder</button>
-            </form>
-        </div>
-    </section>
+                    <button type="submit" class="btn-gonder">Formu Gönder</button>
+                </form>
+            </div>
 
-    <footer>
-        <p>Doğukan & Ege © 2026 - Sonsuza Dek Beraber</p>
-    </footer>
+            <footer>
+                <p>Doğukan & Ege © 2026</p>
+            </footer>
+        </div>
+
+    </div>
 
     <script src="script.js"></script>
 </body>
