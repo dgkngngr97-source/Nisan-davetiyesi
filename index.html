@@ -10,47 +10,61 @@
 </head>
 <body>
 
-    <!-- BOHEM & ÇİÇEK TEMALO BOZCAADA GİRİŞ EKRANI -->
+    <!-- BOHEM BOZCAADA GİRİŞ EKRANI -->
     <div id="intro-screen">
+        <!-- Yıldızlı Gökyüzü -->
         <div class="stars"></div>
         
-        <!-- Uçuşan Bohem Yapraklar ve Pampas Tozları -->
-        <div class="boho-leaves"></div>
-
-        <!-- Yenilenen Estetik Yel Değirmeni Çizimi -->
-        <div class="windmill">
-            <svg viewBox="0 0 100 150" class="windmill-svg">
-                <path d="M30,140 L40,40 L60,40 L70,140 Z" fill="#6d5959" />
-                <rect x="46" y="60" width="8" height="12" fill="#f7ede2" rx="2" />
-                <rect x="46" y="90" width="8" height="12" fill="#f7ede2" rx="2" />
-                <polygon points="35,40 50,15 65,40" fill="#574444" />
-            </svg>
-            <!-- Dönen Estetik Kanatlar -->
-            <div class="windmill-sails">
-                <svg viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="3" fill="#f7ede2" />
-                    <line x1="50" y1="50" x2="50" y2="10" stroke="#574444" stroke-width="2" />
-                    <line x1="50" y1="50" x2="50" y2="90" stroke="#574444" stroke-width="2" />
-                    <line x1="50" y1="50" x2="10" y2="50" stroke="#574444" stroke-width="2" />
-                    <line x1="50" y1="50" x2="90" y2="50" stroke="#574444" stroke-width="2" />
-                    <polygon points="50,10 58,25 50,25" fill="#6d5959" opacity="0.8" />
-                    <polygon points="50,90 42,75 50,75" fill="#6d5959" opacity="0.8" />
-                    <polygon points="10,50 25,42 25,50" fill="#6d5959" opacity="0.8" />
-                    <polygon points="90,50 75,58 75,50" fill="#6d5959" opacity="0.8" />
-                </svg>
-            </div>
+        <!-- Uçuşan Bohem Çiçek Yaprakları -->
+        <div class="flower-fall">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
         </div>
 
-        <!-- El Ele Tutuşan Romantik Çift Çizimi -->
-        <div class="couple-walking">
-            <svg viewBox="0 0 64 64" class="couple-svg">
-                <circle cx="24" cy="14" r="4" fill="#574444"/>
-                <path d="M20,22 C20,18 28,18 28,22 L27,42 L25,42 L25,58 L23,58 L23,42 L21,42 Z" fill="#574444"/>
-                <circle cx="38" cy="15" r="3.5" fill="#574444"/>
-                <path d="M35,22 C35,19 41,19 41,22 L43,35 L46,50 L31,50 L34,35 Z" fill="#574444"/>
-                <path d="M34,50 L35,58 L37,58 L36,50 Z" fill="#574444"/>
-                <path d="M39,50 L40,58 L42,58 L41,50 Z" fill="#574444"/>
-                <path d="M26,26 Q31,30 35,26" stroke="#574444" stroke-width="1.5" fill="none"/>
+        <!-- Arka Planda Yakın Plan 3 Tane Bozcaada Yel Değirmeni Silüeti -->
+        <div class="bozcaada-silhouettes">
+            <svg viewBox="0 0 300 150" class="mills-svg">
+                <!-- 1. Değirmen (Solda, biraz arkada) -->
+                <g transform="translate(20, 20) scale(0.8)">
+                    <path d="M30,140 L42,40 L58,40 L70,140 Z" fill="#6d5959" opacity="0.7"/>
+                    <polygon points="35,40 50,15 65,40" fill="#574444" opacity="0.7"/>
+                </g>
+                <!-- 2. Değirmen (Ortada, ana büyük değirmen) -->
+                <g transform="translate(100, 0)">
+                    <path d="M30,140 L40,30 L60,30 L70,140 Z" fill="#574444" />
+                    <polygon points="32,30 50,2 68,30" fill="#403030" />
+                    <!-- Pencereler -->
+                    <rect x="46" y="50" width="8" height="12" fill="#fff" opacity="0.4" rx="2" />
+                    <rect x="46" y="85" width="8" height="12" fill="#fff" opacity="0.4" rx="2" />
+                </g>
+                <!-- 3. Değirmen (Sağda, orta boy) -->
+                <g transform="translate(190, 15) scale(0.9)">
+                    <path d="M30,140 L41,35 L59,35 L70,140 Z" fill="#6d5959" opacity="0.85"/>
+                    <polygon points="33,35 50,8 67,35" fill="#574444" opacity="0.85"/>
+                </g>
+            </svg>
+        </div>
+
+        <!-- Ön Planda Yakın Plan Siyah Saçlı Romantik Çift -->
+        <div class="romantic-couple">
+            <svg viewBox="0 0 100 100" class="couple-svg">
+                <!-- Erkek (Siyah Saçlı, Bohem Takım) -->
+                <path d="M32,45 C32,38 42,38 42,45 L43,95 L31,95 Z" fill="#403030"/> <!-- Kıyafet -->
+                <circle cx="37" cy="32" r="5" fill="#eacda3"/> <!-- Yüz -->
+                <path d="M33,31 C32,27 41,25 41,29 C42,28 39,25 35,26 Z" fill="#000"/> <!-- Siyah Saç -->
+                
+                <!-- Kadın (Siyah Saçlı, Bohem Uçuşan Elbiseli) -->
+                <path d="M48,48 C48,42 62,42 62,48 L68,95 L42,95 Z" fill="#403030"/> <!-- Elbise -->
+                <circle cx="55" cy="34" r="4.5" fill="#eacda3"/> <!-- Yüz -->
+                <!-- Uzun Siyah Saçlar (Omuzlara Dökülen) -->
+                <path d="M50,33 C49,27 60,26 59,31 C61,33 59,42 57,45 C55,42 52,45 51,35 Z" fill="#000"/> 
+
+                <!-- El Ele Tutuşma Detayı -->
+                <path d="M40,52 Q44,55 47,52" stroke="#403030" stroke-width="2" fill="none"/>
             </svg>
         </div>
         
@@ -62,27 +76,20 @@
         
         <div id="zarf-sahne" class="sahne aktif">
             <div class="zarf-wrapper">
-                
                 <div class="zarf-ic"></div>
-                
                 <div class="davetiye-kart" id="davetiye-kart">
                     <img src="davetiye_kart.png" class="davetiye-kart-img" alt="Davetiye Kartı">
                 </div>
-
                 <img src="zarf_alt.png" class="zarf-on-img" alt="Zarf Alt Gövde">
-                
                 <div class="zarf-kapak-kasa" id="zarf-kapak">
                     <img src="zarf_ust_kapak.png" class="zarf-ust-img" alt="Zarf Üst Kapak">
                 </div>
-                
                 <img src="muhur.png" class="muhur-buton" id="muhur-btn" alt="Mühür">
-                
                 <p class="ac-notu">Açmak İçin Mühüre Tıklayın</p>
             </div>
         </div>
 
         <div id="detay-sahne" class="detay-sahne">
-            
             <img src="zengin_bohem_cicek_kosesi.png" class="kose-cicek sol-ust" alt="Bohem Çiçek">
             <img src="zengin_bohem_cicek_kosesi.png" class="kose-cicek sag-alt" alt="Bohem Çiçek">
 
@@ -107,7 +114,6 @@
                 <h3>TÖREN YERİ</h3>
                 <p class="mekan-adi">Cafe Home Restaurant</p>
                 <p class="mekan-adres">Atakum / Samsun</p>
-                
                 <a href="http://maps.google.com/?q=cafe+home+samsun+atakum" target="_blank" class="btn-harita">
                     <i class="fa-solid fa-location-arrow"></i> Konumu Haritalarda Gör
                 </a>
@@ -136,17 +142,15 @@
                 <p>Doğukan & Ege © 2026</p>
             </footer>
         </div>
-
     </div>
 
     <script src="script.js"></script>
 
-    <!-- SAHNELERİ YÖNETEN JAVASCRIPT -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const introScreen = document.getElementById("intro-screen");
             
-            // 6.5 saniye sonra Bozcaada perdesini yukarı doğru kaydırarak kaldırır
+            // Sahne kalitesini artırmak için kapanış süresini 7 saniyeye çıkardık, acele etmesin
             setTimeout(() => {
                 if(introScreen) {
                     introScreen.classList.add("fade-out");
@@ -154,7 +158,7 @@
                         introScreen.style.display = "none";
                     }, 1500);
                 }
-            }, 6500);
+            }, 7000);
         });
     </script>
 </body>
