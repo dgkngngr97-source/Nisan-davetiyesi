@@ -1,5 +1,5 @@
 /* ==========================================
-   1. ORİJİNAL SİTE AYARLARI VE AYRIŞTIRMA
+   1. GENEL SİTE VE ANIMASYON AYARLARI
    ========================================== */
 * {
     margin: 0;
@@ -21,17 +21,17 @@ body {
     left: 0;
     width: 100vw;
     height: 100vh;
-    /* Bozcaada Bohem Gün Batımı Geçiş Renkleri */
+    /* Bohem Gün Batımı Geçiş Renkleri */
     background: linear-gradient(180deg, #f7ede2 0%, #f5cac3 60%, #f28482 100%);
-    z-index: 999999; /* Her şeyin en üstünde açılması için maksimum değer */
+    z-index: 999999;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.2s;
+    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.5s;
 }
 
-/* Bohem Yıldızlar / Pırıltılar */
+/* Yıldızlar */
 #intro-screen .stars {
     position: absolute;
     width: 100%;
@@ -39,60 +39,79 @@ body {
     top: 0;
     background-image: radial-gradient(#fff 1.5px, transparent 20px);
     background-size: 40px 40px;
-    opacity: 0.6;
+    opacity: 0.5;
     animation: bohoTwinkle 3s infinite alternate;
 }
 
 @keyframes bohoTwinkle {
-    0% { opacity: 0.3; }
-    100% { opacity: 0.8; }
+    0% { opacity: 0.2; }
+    100% { opacity: 0.7; }
 }
 
-/* Bohem Toprak Tonlarında Yel Değirmeni */
-#intro-screen .windmill {
+/* Havada süzülen pampas esintisi efekti */
+#intro-screen .boho-leaves {
     position: absolute;
-    bottom: 25%;
-    right: 12%;
-    width: 50px;
-    height: 85px;
-}
-#intro-screen .windmill-body {
     width: 100%;
     height: 100%;
-    background: #6d5959; /* Yumuşak kahve/vizon */
-    clip-path: polygon(25% 0%, 75% 0%, 100% 100%, 0% 100%);
+    top: 0;
+    left: 0;
+    background-image: 
+        radial-gradient(rgba(181, 131, 141, 0.3) 1px, transparent 15px),
+        radial-gradient(rgba(224, 177, 203, 0.4) 2px, transparent 20px);
+    background-size: 80px 120px;
+    animation: windBlow 8s linear infinite;
 }
+
+@keyframes windBlow {
+    0% { background-position: 0px 0px; opacity: 0; }
+    10% { opacity: 0.5; }
+    90% { opacity: 0.5; }
+    100% { background-position: -150px 200px; opacity: 0; }
+}
+
+/* Yel Değirmeni Yerleşimi */
+#intro-screen .windmill {
+    position: absolute;
+    bottom: 24%;
+    right: 12%;
+    width: 90px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+}
+#intro-screen .windmill-svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* Yel Değirmeni Kanatlarının Dönüşü */
 #intro-screen .windmill-sails {
     position: absolute;
-    top: 0;
+    top: 23px; 
     left: 50%;
-    width: 100px;
-    height: 100px;
-    margin-left: -50px;
-    margin-top: -50px;
-    background: repeating-conic-gradient(from 0deg, transparent 0deg 30deg, #574444 30deg 35deg);
-    border-radius: 50%;
-    animation: rotateSails 12s linear infinite;
+    width: 140px;
+    height: 140px;
+    margin-left: -70px;
+    margin-top: -70px;
+    animation: rotateSails 16s linear infinite;
 }
 
 @keyframes rotateSails {
     100% { transform: rotate(360deg); }
 }
 
-/* Romantik Yürüyüş Yapan Çift Silüeti */
+/* Romantik Çift Giriş Ayarları */
 #intro-screen .couple-walking {
     position: absolute;
-    bottom: 22%;
-    left: -60px;
-    width: 35px;
+    bottom: 21%;
+    left: -80px;
+    width: 55px;
     height: 55px;
-    background: #574444;
-    border-radius: 8px 8px 0 0;
-    animation: walkAcross 6s forwards ease-in-out;
+    animation: walkAcross 7s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
-@keyframes walkAcross {
-    100% { left: 45%; } /* Ekranın ortasına kadar romantik yürüyüş */
+#intro-screen .couple-svg {
+    width: 100%;
+    height: 100%;
 }
 
 /* Bohem Toprak Zemin */
@@ -102,10 +121,10 @@ body {
     width: 100%;
     height: 25%;
     background: #e0b1cb;
-    border-top: 4px solid #b5838d;
+    border-top: 3px solid rgba(181, 131, 141, 0.4);
 }
 
-/* Animasyon Bittiğinde Ekranın Yukarı Kayması */
+/* Animasyon Bittiğinde Perdenin Yukarı Kayması */
 #intro-screen.fade-out {
     transform: translateY(-100%);
     opacity: 0;
