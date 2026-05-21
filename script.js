@@ -1,25 +1,29 @@
-// HTML Elemanları
 const muhurBtn = document.getElementById("muhur-btn");
 const zarfSahne = document.getElementById("zarf-sahne");
 const detaySahne = document.getElementById("detay-sahne");
 
-// 1. Mühür Tıklandığında Zarfı Aç ve Diğer Sahneye Akışı Başlat
 muhurBtn.addEventListener("click", function() {
-    // Zarf açılma sınıfını ekle (CSS tetiklenir)
+    // 1. Zarf açılma ve kartın yukarı fırlama animasyonunu başlat
     zarfSahne.classList.add("zarf-acildi");
     
-    // Zarf açılıp kart yukarı fırladıktan sonra (yaklaşık 3 saniye sonra) detay alanını göster
+    // 2. Kart havada süzülürken detay sahnesini arka planda hazırla
     setTimeout(() => {
         detaySahne.style.display = "block";
         
-        // Ekranı pürüzsüzce detayların başladığı yere kaydır
-        detaySahne.scrollIntoView({ behavior: "smooth" });
-    }, 2800);
+        // 3. Zarf sahnesini yumuşakça erit, detayları görünür yap
+        setTimeout(() => {
+            zarfSahne.style.opacity = "0";
+            detaySahne.style.opacity = "1";
+            
+            // Ekranı detaylara pürüzsüzce kaydır
+            detaySahne.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+        
+    }, 2200); // Kart fırladıktan tam 2.2 saniye sonra geçiş yap
 });
 
-// 2. Geri Sayım Sayacı (14 Kasım 2026)
+// Geri Sayım Sayacı (14 Kasım 2026)
 const hedefTarih = new Date("November 14, 2026 19:00:00").getTime();
-
 const sayac = setInterval(() => {
     const simdi = new Date().getTime();
     const fark = hedefTarih - simdi;
@@ -40,7 +44,6 @@ const sayac = setInterval(() => {
     }
 }, 1000);
 
-// Form Gönderme Bildirimi
 document.getElementById("rsvp-form").addEventListener("submit", function(e) {
     e.preventDefault();
     alert("Katılım durumunuz başarıyla iletildi, teşekkür ederiz! 🎉");
