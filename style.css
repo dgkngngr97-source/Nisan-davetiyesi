@@ -1,327 +1,230 @@
-/* Temel Sıfırlama ve Değişkenler */
+/* Genel Ayarlar */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --bg-color: #fdfaf6;
-    --card-bg: #ffffff;
-    --text-main: #4a3f35;
-    --text-muted: #7a6e61;
-    --accent-boho: #b87d4b; /* Sıcak Kiremit / Toprak tonu */
-    --accent-light: #f4ede4;
-}
-
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    line-height: 1.6;
+    background-color: #eae3da; /* Bohem taş/krem arka plan rengi */
+    color: #4a3f35;
+    overflow-x: hidden;
 }
 
-h1, h2, h3, .subtitle {
-    font-family: 'Playfair Display', serif;
-    text-align: center;
+.davetiye-konteyner {
+    width: 100vw;
+    min-height: 100vh;
 }
 
-/* Hero Kapak Alanı */
-.hero {
+/* SAHNE 1: ZARF ALANI */
+.sahne {
+    width: 100%;
     height: 100vh;
-    background: linear-gradient(rgba(253, 250, 246, 0.4), rgba(253, 250, 246, 0.75)), url('resimler/hero-bg.jpg') center/cover no-repeat;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
+    position: relative;
+    background-color: #eae3da;
+}
+
+.sahne.aktif {
+    display: flex;
+}
+
+/* Zarf Ana Kasası */
+.zarf-wrapper {
+    position: relative;
+    width: 380px;
+    height: 280px;
+    background-color: #ded6cc; /* Zarfın iç duvar rengi */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    border-radius: 4px;
+}
+
+/* Zarfın Ön Gövde Çizimi (CSS Üçgen Katlamaları) */
+.zarf-on {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 190px solid #fcf9f5;  /* Sol katlama */
+    border-right: 190px solid #fcf9f5; /* Sağ katlama */
+    border-top: 140px solid transparent;
+    border-bottom: 140px solid #f5ede3; /* Alt katlama */
+    top: 0;
+    left: 0;
+    z-index: 3;
+    border-radius: 4px;
+}
+
+/* Zarfın Üst Kapağı */
+.zarf-kapak {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 190px solid transparent;
+    border-right: 190px solid transparent;
+    border-top: 145px solid #f2e7dc; /* Kapak rengi */
+    top: 0;
+    left: 0;
+    z-index: 4;
+    transform-origin: top;
+    transition: transform 1.2s ease-in-out;
+}
+
+/* Gerçek Mühür Görseli */
+.muhur-buton {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    left: calc(50% - 35px);
+    top: calc(50% - 20px);
+    z-index: 5;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out, opacity 0.5s;
+}
+.muhur-buton:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.ac-notu {
+    position: absolute;
+    bottom: -50px;
+    width: 100%;
+    text-align: center;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: #7a6e61;
+    animation: nefes 2s infinite;
+}
+
+@keyframes nefes {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
+/* ZARF İÇİNDEN ÇIKACAK OLAN DAVETİYE KARTI */
+.davetiye-kart {
+    position: absolute;
+    width: 350px;
+    height: 480px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    left: 15px;
+    top: 10px;
+    z-index: 2;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: transform 1.5s 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    border: 1px solid #f4ede4;
+}
+
+.kart-icerik {
+    border: 1px solid #e8dfd5;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     padding: 20px;
 }
 
-.hero-content {
-    max-width: 700px;
+.boho-dal { font-size: 1.8rem; margin-bottom: 10px; color: #b87d4b; }
+.kart-ust-not { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #7a6e61; }
+.kart-isimler { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #b87d4b; margin: 15px 0; font-weight: 400; }
+.kart-davet { font-size: 0.85rem; line-height: 1.6; color: #5a4f43; margin-bottom: 15px; }
+.kart-cizgi { width: 40px; height: 1px; background-color: #dcd1c4; margin-bottom: 15px; }
+.kart-tarih { font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px; }
+.kart-saat, .kart-mekan { font-size: 0.85rem; color: #7a6e61; margin-top: 4px; }
+
+/* ANIMASYON TETİKLENDİĞİNDE (MÜHRE TIKLANINCA) */
+.zarf-acildi .zarf-kapak {
+    transform: rotateX(180deg);
+    z-index: 1; /* Kapağı arkaya at ki kart önünden çıkabilsin */
 }
 
-.subtitle {
-    font-style: italic;
-    font-size: 1.3rem;
-    color: var(--text-muted);
-    margin-bottom: 10px;
+.zarf-acildi .muhur-buton {
+    opacity: 0;
+    pointer-events: none;
 }
 
-.hero-content h1 {
-    font-size: 3.5rem;
-    color: var(--accent-boho);
-    margin: 20px 0;
-    font-weight: 700;
-    letter-spacing: 2px;
-}
-
-.hero-content .date {
-    font-size: 1.2rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-.hero-content .venue {
-    font-size: 1.1rem;
-    color: var(--text-muted);
-    margin-top: 5px;
-}
-
-/* Geri Sayım Sayacı */
-.countdown-section {
-    padding: 60px 20px;
-    background-color: var(--accent-light);
-    text-align: center;
-}
-
-.countdown-section h3 {
-    font-size: 1.8rem;
-    color: var(--text-main);
-    margin-bottom: 25px;
-}
-
-#countdown {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    max-width: 500px;
-    margin: 0 auto;
-}
-
-.time-box {
-    background: var(--card-bg);
-    flex: 1;
-    padding: 20px 10px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(184, 125, 75, 0.08);
-}
-
-.time-box span {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--accent-boho);
-    display: block;
-    margin-bottom: 5px;
-}
-
-.time-box p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Detay Kartı Kartı */
-.details {
-    padding: 8px 20px 60px 20px;
-    max-width: 650px;
-    margin: -30px auto 0 auto;
-    position: relative;
+.zarf-acildi .davetiye-kart {
+    transform: translateY(-290px); /* Videodaki gibi kart yukari firliyor */
     z-index: 10;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-.card {
-    background: var(--card-bg);
-    padding: 40px 30px;
+/* SAHNE 2: DETAYLAR ALANI */
+.detay-sahne {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 20px;
+    display: none; /* Başlangıçta gizli, animasyon bitince açılacak */
+}
+
+.countdown-section, .toren-yeri-kart, .rsvp-kart {
+    background-color: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    padding: 30px 20px;
+    margin-bottom: 25px;
     text-align: center;
-    border: 1px solid rgba(184, 125, 75, 0.1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+    border: 1px solid rgba(184, 125, 75, 0.08);
 }
 
-.flower-icon {
-    font-size: 2rem;
-    margin-bottom: 15px;
-}
+/* Geri Sayım Kutuları */
+#countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
+.time-box { background: #fbf9f6; flex: 1; padding: 15px 5px; border-radius: 8px; border: 1px solid #f4ede4; }
+.time-box span { font-size: 1.6rem; font-weight: bold; color: #b87d4b; display: block; }
+.time-box p { font-size: 0.75rem; color: #7a6e61; text-transform: uppercase; }
 
-.invitation-text {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--text-main);
-    margin-bottom: 30px;
-    line-height: 1.8;
-}
-
-.info-items {
-    text-align: left;
-    max-width: 350px;
-    margin: 0 auto 30px auto;
-}
-
-.info-item {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-size: 1rem;
-}
-
-.info-item i {
-    color: var(--accent-boho);
-    font-size: 1.2rem;
-    width: 25px;
-    text-align: center;
-}
-
-.btn-map {
+/* Mekan ve Harita Butonu */
+.mekan-ikon { font-size: 2.5rem; color: #b87d4b; margin-bottom: 15px; }
+.mekan-adi { font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
+.mekan-adres { font-size: 0.9rem; color: #7a6e61; margin-bottom: 20px; }
+.btn-harita {
     display: inline-block;
-    background-color: var(--accent-boho);
+    background-color: #b87d4b;
     color: white;
     text-decoration: none;
-    padding: 12px 35px;
-    border-radius: 30px;
+    padding: 12px 30px;
+    border-radius: 25px;
     font-weight: 600;
-    font-size: 0.95rem;
-    transition: transform 0.2s, background-color 0.2s;
-    box-shadow: 0 4px 15px rgba(184, 125, 75, 0.3);
+    font-size: 0.9rem;
+    box-shadow: 0 4px 12px rgba(184, 125, 75, 0.25);
+    transition: background-color 0.2s;
 }
+.btn-harita:hover { background-color: #9c6435; }
 
-.btn-map:hover {
-    background-color: #a36939;
-    transform: translateY(-2px);
-}
-
-/* Galeri Alanı */
-.gallery {
-    padding: 60px 20px;
-    background-color: #fff;
-}
-
-.gallery h3 { font-size: 2rem; margin-bottom: 5px; color: var(--accent-boho); }
-.gallery-subtitle { text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 30px; }
-
-.gallery-grid {
-    display: block;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
-.gallery-item {
+/* RSVP Form Elemanları */
+.rsvp-kart h3 { margin-bottom: 5px; }
+.rsvp-alt-not { font-size: 0.85rem; color: #7a6e61; margin-bottom: 20px; }
+.rsvp-kart input, .rsvp-kart select {
     width: 100%;
+    padding: 12px;
     margin-bottom: 15px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.3s;
-}
-
-.gallery-item img:hover {
-    transform: scale(1.03);
-}
-
-/* RSVP / LCV Formu */
-.rsvp {
-    padding: 60px 20px;
-    background-color: var(--bg-color);
-}
-
-.rsvp-container {
-    max-width: 550px;
-    margin: 0 auto;
-    background: var(--card-bg);
-    padding: 40px 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-    border: 1px solid rgba(184, 125, 75, 0.1);
-}
-
-.rsvp h3 { font-size: 2rem; margin-bottom: 5px; color: var(--accent-boho); }
-.rsvp-subtitle { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 30px; }
-
-.input-group {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.input-group i {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-}
-
-.input-group textarea + i {
-    top: 25px;
-}
-
-.input-group input, .input-group select, .input-group textarea {
-    width: 100%;
-    padding: 12px 15px 12px 45px;
     border: 1px solid #dcd1c4;
     border-radius: 8px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 0.95rem;
-    color: var(--text-main);
-    background-color: #fff;
     outline: none;
+    font-family: 'Montserrat', sans-serif;
 }
-
-.input-group textarea {
-    height: 100px;
-    resize: none;
-}
-
-.input-group input:focus, .input-group select:focus, .input-group textarea:focus {
-    border-color: var(--accent-boho);
-}
-
-.radio-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.radio-label {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-    font-size: 0.95rem;
-}
-
-.btn-submit {
+.radio-secenekleri { display: flex; justify-content: space-around; margin-bottom: 15px; font-size: 0.9rem; }
+.radio-secenekleri label { cursor: pointer; }
+.btn-gonder {
     width: 100%;
-    background-color: var(--text-main);
+    background-color: #4a3f35;
     color: white;
     border: none;
-    padding: 14px;
+    padding: 12px;
     border-radius: 8px;
-    font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s;
 }
+.btn-gonder:hover { background-color: #b87d4b; }
 
-.btn-submit:hover {
-    background-color: var(--accent-boho);
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 30px 20px;
-    background-color: var(--accent-light);
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-}
-
-/* Tablet ve Masaüstü Ekranlar İçin Düzenlemeler */
-@media (min-width: 768px) {
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 12fr);
-        gap: 20px;
-    }
-    .gallery-item { margin-bottom: 0; }
-    .radio-group { flex-direction: row; justify-content: space-around; }
-}
+footer { text-align: center; padding: 20px 0; font-size: 0.8rem; color: #7a6e61; }
