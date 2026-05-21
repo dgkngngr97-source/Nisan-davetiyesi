@@ -1,25 +1,28 @@
 const muhurBtn = document.getElementById("muhur-btn");
 const zarfSahne = document.getElementById("zarf-sahne");
+const kartSahne = document.getElementById("kart-sahne");
 const detaySahne = document.getElementById("detay-sahne");
 
 muhurBtn.addEventListener("click", function() {
-    // 1. Zarf açılma ve kartın yukarı fırlama animasyonunu başlat
-    zarfSahne.classList.add("zarf-acildi");
+    // 1. Zarf sahnesini yumuşakça kaybet
+    zarfSahne.style.opacity = "0";
     
-    // 2. Kart havada süzülürken detay sahnesini arka planda hazırla
     setTimeout(() => {
+        zarfSahne.classList.remove("aktif");
+        
+        // 2. Kart sahnesini aç ve büyütme animasyonunu tetikle
+        kartSahne.classList.add("aktif");
+        
+        // Detayları da görünürlük moduna al ama henüz tam opak yapma
         detaySahne.style.display = "block";
         
-        // 3. Zarf sahnesini yumuşakça erit, detayları görünür yap
+        // 3. Kart açıldıktan hemen sonra detayları ve kaydırma iznini ver
         setTimeout(() => {
-            zarfSahne.style.opacity = "0";
             detaySahne.style.opacity = "1";
-            
-            // Ekranı detaylara pürüzsüzce kaydır
-            detaySahne.scrollIntoView({ behavior: "smooth" });
-        }, 100);
+            document.body.style.overflowY = "auto";
+        }, 600);
         
-    }, 2200); // Kart fırladıktan tam 2.2 saniye sonra geçiş yap
+    }, 500);
 });
 
 // Geri Sayım Sayacı (14 Kasım 2026)
