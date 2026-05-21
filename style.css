@@ -65,7 +65,7 @@ body {
     pointer-events: none;
 }
 
-/* Zarf Üst Kapağı (Sıfıra Sıfır Birleşen Tasarım) */
+/* Zarf Üst Kapağı */
 .zarf-kapak-kasa {
     position: absolute;
     width: 100%;
@@ -84,7 +84,7 @@ body {
     object-fit: fill;
 }
 
-/* Mühür (Tam Kapak Ucuna/Kesişim Yerine Hizalanmış Hali) */
+/* Mühür */
 .muhur-buton {
     position: absolute;
     width: 75px;
@@ -111,7 +111,7 @@ body {
     color: #4a3f35;
 }
 
-/* Davetiye Kartı (Mühür Kapalıyken Sıfır Taşma Garantili) */
+/* Davetiye Kartı */
 .davetiye-kart {
     position: absolute;
     width: 95%;
@@ -130,7 +130,7 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
-/* --- ANIMASYON ANINDAKİ DEĞİŞİMLER --- */
+/* Animasyonlar */
 .zarf-acildi .zarf-kapak-kasa {
     transform: rotateX(160deg);
 }
@@ -146,7 +146,7 @@ body {
     z-index: 10;
 }
 
-/* SAHNE 2: DETAYLAR BÖLÜMÜ */
+/* Sahne 2: Detaylar */
 .detay-sahne {
     width: 100%;
     max-width: 420px;
@@ -160,7 +160,7 @@ body {
 
 .kose-cicek {
     position: fixed;
-    width: 100px;
+    width: 120px; 
     z-index: -1;
     pointer-events: none;
 }
