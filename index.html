@@ -35,8 +35,8 @@
 
         <div id="detay-sahne" class="detay-sahne">
             
-            <img src="cicek_detay.png" class="kose-cicek sol-ust" alt="Çiçek">
-            <img src="cicek_detay.png" class="kose-cicek sag-alt" alt="Çiçek">
+            <img src="zengin_bohem_cicek_kosesi.png" class="kose-cicek sol-ust" alt="Bohem Çiçek">
+            <img src="zengin_bohem_cicek_kosesi.png" class="kose-cicek sag-alt" alt="Bohem Çiçek">
 
             <div class="countdown-section">
                 <h3>Nişanımıza Kalan Süre</h3>
@@ -54,7 +54,7 @@
                 <p class="mekan-adi">Cafe Home Restaurant</p>
                 <p class="mekan-adres">Atakum / Samsun</p>
                 
-                <a href="https://www.google.com/maps/search/?api=1&query=Cafe+Home+Restaurant+Atakum+Samsun" target="_blank" class="btn-harita">
+                <a href="https://maps.google.com/?q=cafe+home+samsun+atakum" target="_blank" class="btn-harita">
                     <i class="fa-solid fa-location-arrow"></i> Konumu Haritalarda Gör
                 </a>
             </div>
@@ -62,13 +62,13 @@
             <div class="rsvp-kart">
                 <h3>Katılım Durumu</h3>
                 <p class="rsvp-alt-not">Lütfen katılım durumunuzu bildiriniz.</p>
-                <form id="rsvp-form">
-                    <input type="text" placeholder="Adınız Soyadınız" required>
+                <form id="rsvp-form" action="https://getform.io/f/bjjjexza" method="POST">
+                    <input type="text" name="name" placeholder="Adınız Soyadınız" required>
                     <div class="radio-secenekleri">
                         <label><input type="radio" name="katilim" value="evet" checked> Katılıyorum 🎉</label>
                         <label><input type="radio" name="katilim" value="hayir"> Katılamıyorum 😔</label>
                     </div>
-                    <select required>
+                    <select name="guests" required>
                         <option value="" disabled selected>Kişi Sayısı</option>
                         <option value="1">1 Kişi</option>
                         <option value="2">2 Kişi</option>
