@@ -65,7 +65,7 @@ body {
     pointer-events: none;
 }
 
-/* Zarf Üst Kapağı */
+/* Zarf Üst Kapağı (Sıfıra Sıfır Birleşen Tasarım) */
 .zarf-kapak-kasa {
     position: absolute;
     width: 100%;
@@ -84,14 +84,14 @@ body {
     object-fit: fill;
 }
 
-/* --- TAM ÜST KAPAK UCUNA VE BİRLEŞİM YERİNE OTURAN MÜHÜR --- */
+/* Mühür (Tam Kapak Ucuna/Kesişim Yerine Hizalanmış Hali) */
 .muhur-buton {
     position: absolute;
     width: 75px;
     height: 75px;
     z-index: 5;           
     cursor: pointer;
-    top: 48.5%;           /* Üst kapak dantelinin en uç noktasına inecek şekilde aşağı kaydırıldı */
+    top: 48.5%;           
     left: calc(50% - 37.5px);
     transition: transform 0.3s ease, opacity 0.4s;
 }
@@ -111,7 +111,7 @@ body {
     color: #4a3f35;
 }
 
-/* Davetiye Kartı */
+/* Davetiye Kartı (Mühür Kapalıyken Sıfır Taşma Garantili) */
 .davetiye-kart {
     position: absolute;
     width: 95%;
@@ -130,7 +130,7 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
-/* Animasyon Tetiklendiğinde */
+/* --- ANIMASYON ANINDAKİ DEĞİŞİMLER --- */
 .zarf-acildi .zarf-kapak-kasa {
     transform: rotateX(160deg);
 }
