@@ -10,17 +10,54 @@
 </head>
 <body>
 
-    <!-- BOHEM & ÇİÇEK TEMALI BOZCAADA GİRİŞ EKRANI -->
+    <!-- BOHEM & ÇİÇEK TEMALO BOZCAADA GİRİŞ EKRANI -->
     <div id="intro-screen">
         <div class="stars"></div>
+        
+        <!-- Uçuşan Bohem Yapraklar ve Pampas Tozları -->
+        <div class="boho-leaves"></div>
+
+        <!-- Yenilenen Estetik Yel Değirmeni Çizimi -->
         <div class="windmill">
-            <div class="windmill-body"></div>
-            <div class="windmill-sails"></div>
+            <svg viewBox="0 0 100 150" class="windmill-svg">
+                <path d="M30,140 L40,40 L60,40 L70,140 Z" fill="#6d5959" />
+                <rect x="46" y="60" width="8" height="12" fill="#f7ede2" rx="2" />
+                <rect x="46" y="90" width="8" height="12" fill="#f7ede2" rx="2" />
+                <polygon points="35,40 50,15 65,40" fill="#574444" />
+            </svg>
+            <!-- Dönen Estetik Kanatlar -->
+            <div class="windmill-sails">
+                <svg viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="3" fill="#f7ede2" />
+                    <line x1="50" y1="50" x2="50" y2="10" stroke="#574444" stroke-width="2" />
+                    <line x1="50" y1="50" x2="50" y2="90" stroke="#574444" stroke-width="2" />
+                    <line x1="50" y1="50" x2="10" y2="50" stroke="#574444" stroke-width="2" />
+                    <line x1="50" y1="50" x2="90" y2="50" stroke="#574444" stroke-width="2" />
+                    <polygon points="50,10 58,25 50,25" fill="#6d5959" opacity="0.8" />
+                    <polygon points="50,90 42,75 50,75" fill="#6d5959" opacity="0.8" />
+                    <polygon points="10,50 25,42 25,50" fill="#6d5959" opacity="0.8" />
+                    <polygon points="90,50 75,58 75,50" fill="#6d5959" opacity="0.8" />
+                </svg>
+            </div>
         </div>
-        <div class="couple-walking"></div>
+
+        <!-- El Ele Tutuşan Romantik Çift Çizimi -->
+        <div class="couple-walking">
+            <svg viewBox="0 0 64 64" class="couple-svg">
+                <circle cx="24" cy="14" r="4" fill="#574444"/>
+                <path d="M20,22 C20,18 28,18 28,22 L27,42 L25,42 L25,58 L23,58 L23,42 L21,42 Z" fill="#574444"/>
+                <circle cx="38" cy="15" r="3.5" fill="#574444"/>
+                <path d="M35,22 C35,19 41,19 41,22 L43,35 L46,50 L31,50 L34,35 Z" fill="#574444"/>
+                <path d="M34,50 L35,58 L37,58 L36,50 Z" fill="#574444"/>
+                <path d="M39,50 L40,58 L42,58 L41,50 Z" fill="#574444"/>
+                <path d="M26,26 Q31,30 35,26" stroke="#574444" stroke-width="1.5" fill="none"/>
+            </svg>
+        </div>
+        
         <div class="ground"></div>
     </div>
 
+    <!-- ANA DAVETİYE İÇERİĞİ -->
     <div class="davetiye-konteyner">
         
         <div id="zarf-sahne" class="sahne aktif">
@@ -104,20 +141,20 @@
 
     <script src="script.js"></script>
 
-    <!-- SAHNELERİ YÖNETEN EK JAVASCRIPT KODU -->
+    <!-- SAHNELERİ YÖNETEN JAVASCRIPT -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const introScreen = document.getElementById("intro-screen");
             
-            // 5.5 saniye sonra Bozcaada gün batımı perdesini yukarı doğru pürüzsüzce kaydırarak kaldır
+            // 6.5 saniye sonra Bozcaada perdesini yukarı doğru kaydırarak kaldırır
             setTimeout(() => {
                 if(introScreen) {
                     introScreen.classList.add("fade-out");
                     setTimeout(() => {
                         introScreen.style.display = "none";
-                    }, 1200);
+                    }, 1500);
                 }
-            }, 5500);
+            }, 6500);
         });
     </script>
 </body>
