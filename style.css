@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
-    background-color: #eae3da; /* Bohem taş/krem arka plan rengi */
+    background: url('zarf_arka_plan.jpg') center/cover no-repeat fixed; /* Yüklediğin arka plan görseli */
     color: #4a3f35;
     overflow-x: hidden;
 }
@@ -25,46 +25,41 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: #eae3da;
 }
 
 .sahne.aktif {
     display: flex;
 }
 
-/* Zarf Ana Kasası */
 .zarf-wrapper {
     position: relative;
-    width: 380px;
-    height: 280px;
-    background-color: #ded6cc; /* Zarfın iç duvar rengi */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-    border-radius: 4px;
+    width: 90%;
+    max-width: 400px;
+    height: 300px;
 }
 
-/* Zarfın Ön Gövde Çizimi (CSS Üçgen Katlamaları) */
-.zarf-on {
+.zarf-ic {
     position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 190px solid #fcf9f5;  /* Sol katlama */
-    border-right: 190px solid #fcf9f5; /* Sağ katlama */
-    border-top: 140px solid transparent;
-    border-bottom: 140px solid #f5ede3; /* Alt katlama */
-    top: 0;
-    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(222, 214, 204, 0.5);
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.zarf-on-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
     z-index: 3;
-    border-radius: 4px;
+    bottom: 0;
 }
 
-/* Zarfın Üst Kapağı */
-.zarf-kapak {
+.zarf-kapak-kasa {
     position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 190px solid transparent;
-    border-right: 190px solid transparent;
-    border-top: 145px solid #f2e7dc; /* Kapak rengi */
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     z-index: 4;
@@ -72,78 +67,59 @@ body {
     transition: transform 1.2s ease-in-out;
 }
 
-/* Gerçek Mühür Görseli */
+.zarf-ust-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Mühür Butonu */
 .muhur-buton {
     position: absolute;
-    width: 70px;
-    height: 70px;
-    left: calc(50% - 35px);
+    width: 75px;
+    height: 75px;
+    left: calc(50% - 37.5px);
     top: calc(50% - 20px);
     z-index: 5;
     cursor: pointer;
-    transition: transform 0.5s ease-in-out, opacity 0.5s;
+    transition: transform 0.4s, opacity 0.4s;
 }
 .muhur-buton:hover {
-    transform: scale(1.1) rotate(10deg);
+    transform: scale(1.1) rotate(5deg);
 }
 
 .ac-notu {
     position: absolute;
-    bottom: -50px;
+    bottom: -60px;
     width: 100%;
     text-align: center;
-    font-size: 0.85rem;
-    letter-spacing: 1px;
-    color: #7a6e61;
-    animation: nefes 2s infinite;
+    font-size: 0.9rem;
+    color: #4a3f35;
+    font-weight: 600;
+    z-index: 6;
 }
 
-@keyframes nefes {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
-
-/* ZARF İÇİNDEN ÇIKACAK OLAN DAVETİYE KARTI */
+/* DAVETİYE KARTI ANIMASYONU */
 .davetiye-kart {
     position: absolute;
-    width: 350px;
-    height: 480px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    left: 15px;
-    top: 10px;
+    width: 90%;
+    left: 5%;
+    bottom: 10px;
     z-index: 2;
-    padding: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    transition: transform 1.5s 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    border: 1px solid #f4ede4;
+    transition: transform 1.5s 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.kart-icerik {
-    border: 1px solid #e8dfd5;
-    height: 100%;
+.davetiye-kart-img {
     width: 100%;
-    border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.boho-dal { font-size: 1.8rem; margin-bottom: 10px; color: #b87d4b; }
-.kart-ust-not { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #7a6e61; }
-.kart-isimler { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: #b87d4b; margin: 15px 0; font-weight: 400; }
-.kart-davet { font-size: 0.85rem; line-height: 1.6; color: #5a4f43; margin-bottom: 15px; }
-.kart-cizgi { width: 40px; height: 1px; background-color: #dcd1c4; margin-bottom: 15px; }
-.kart-tarih { font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px; }
-.kart-saat, .kart-mekan { font-size: 0.85rem; color: #7a6e61; margin-top: 4px; }
-
-/* ANIMASYON TETİKLENDİĞİNDE (MÜHRE TIKLANINCA) */
-.zarf-acildi .zarf-kapak {
+/* ZARF AÇILMA TETİKLEYİCİLERİ */
+.zarf-acildi .zarf-kapak-kasa {
     transform: rotateX(180deg);
-    z-index: 1; /* Kapağı arkaya at ki kart önünden çıkabilsin */
+    z-index: 1;
 }
 
 .zarf-acildi .muhur-buton {
@@ -152,56 +128,65 @@ body {
 }
 
 .zarf-acildi .davetiye-kart {
-    transform: translateY(-290px); /* Videodaki gibi kart yukari firliyor */
+    transform: translateY(-260px);
     z-index: 10;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
-/* SAHNE 2: DETAYLAR ALANI */
+/* SAHNE 2: DETAYLAR VE ÇİÇEKLER */
 .detay-sahne {
     width: 100%;
     max-width: 450px;
     margin: 0 auto;
-    padding: 20px;
-    display: none; /* Başlangıçta gizli, animasyon bitince açılacak */
+    padding: 40px 20px;
+    display: none;
+    position: relative;
 }
 
+/* Köşe Çiçekleri */
+.kose-cicek {
+    position: fixed;
+    width: 120px;
+    z-index: -1;
+    pointer-events: none;
+}
+.sol-ust { top: 0; left: 0; }
+.sag-alt { bottom: 0; right: 0; transform: rotate(180deg); }
+
 .countdown-section, .toren-yeri-kart, .rsvp-kart {
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
     border-radius: 16px;
     padding: 30px 20px;
     margin-bottom: 25px;
     text-align: center;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.03);
-    border: 1px solid rgba(184, 125, 75, 0.08);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid rgba(255,255,255,0.5);
 }
 
-/* Geri Sayım Kutuları */
+/* Sayaç Kutuları */
 #countdown { display: flex; justify-content: center; gap: 10px; margin-top: 20px; }
-.time-box { background: #fbf9f6; flex: 1; padding: 15px 5px; border-radius: 8px; border: 1px solid #f4ede4; }
+.time-box { background: #fff; flex: 1; padding: 15px 5px; border-radius: 8px; box-shadow: inset 0 0 5px rgba(0,0,0,0.02); }
 .time-box span { font-size: 1.6rem; font-weight: bold; color: #b87d4b; display: block; }
-.time-box p { font-size: 0.75rem; color: #7a6e61; text-transform: uppercase; }
+.time-box p { font-size: 0.75rem; color: #7a6e61; }
 
-/* Mekan ve Harita Butonu */
-.mekan-ikon { font-size: 2.5rem; color: #b87d4b; margin-bottom: 15px; }
+/* Mekan Kartı */
+.mekan-ikon { font-size: 2.5rem; color: #7a6e61; margin-bottom: 15px; }
 .mekan-adi { font-size: 1.2rem; font-weight: 600; margin-bottom: 5px; }
 .mekan-adres { font-size: 0.9rem; color: #7a6e61; margin-bottom: 20px; }
 .btn-harita {
     display: inline-block;
-    background-color: #b87d4b;
+    background-color: #6e6153;
     color: white;
     text-decoration: none;
     padding: 12px 30px;
     border-radius: 25px;
     font-weight: 600;
     font-size: 0.9rem;
-    box-shadow: 0 4px 12px rgba(184, 125, 75, 0.25);
     transition: background-color 0.2s;
 }
-.btn-harita:hover { background-color: #9c6435; }
+.btn-harita:hover { background-color: #4a3f35; }
 
-/* RSVP Form Elemanları */
-.rsvp-kart h3 { margin-bottom: 5px; }
+/* RSVP */
 .rsvp-alt-not { font-size: 0.85rem; color: #7a6e61; margin-bottom: 20px; }
 .rsvp-kart input, .rsvp-kart select {
     width: 100%;
@@ -210,10 +195,8 @@ body {
     border: 1px solid #dcd1c4;
     border-radius: 8px;
     outline: none;
-    font-family: 'Montserrat', sans-serif;
 }
 .radio-secenekleri { display: flex; justify-content: space-around; margin-bottom: 15px; font-size: 0.9rem; }
-.radio-secenekleri label { cursor: pointer; }
 .btn-gonder {
     width: 100%;
     background-color: #4a3f35;
@@ -223,8 +206,6 @@ body {
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s;
 }
-.btn-gonder:hover { background-color: #b87d4b; }
 
 footer { text-align: center; padding: 20px 0; font-size: 0.8rem; color: #7a6e61; }
