@@ -40,6 +40,7 @@ body {
     background-image: radial-gradient(#fff 1.5px, transparent 20px);
     background-size: 40px 40px;
     opacity: 0.5;
+    z-index: 1;
     animation: bohoTwinkle 3s infinite alternate;
 }
 
@@ -55,6 +56,7 @@ body {
     height: 100%;
     top: 0;
     left: 0;
+    z-index: 2;
     background-image: 
         radial-gradient(rgba(181, 131, 141, 0.3) 1px, transparent 15px),
         radial-gradient(rgba(224, 177, 203, 0.4) 2px, transparent 20px);
@@ -69,15 +71,16 @@ body {
     100% { background-position: -150px 200px; opacity: 0; }
 }
 
-/* Yel Değirmeni Yerleşimi */
+/* Yenilenen Yel Değirmeni Yerleşimi */
 #intro-screen .windmill {
     position: absolute;
-    bottom: 24%;
+    bottom: 25%; /* Tam zemin çizgisine basması için ayarlandı */
     right: 12%;
     width: 90px;
     height: 130px;
     display: flex;
     justify-content: center;
+    z-index: 4; /* Pembe zeminin üstünde durması için yükseltildi */
 }
 #intro-screen .windmill-svg {
     width: 100%;
@@ -93,6 +96,7 @@ body {
     height: 140px;
     margin-left: -70px;
     margin-top: -70px;
+    z-index: 5;
     animation: rotateSails 16s linear infinite;
 }
 
@@ -103,10 +107,11 @@ body {
 /* Romantik Çift Giriş Ayarları */
 #intro-screen .couple-walking {
     position: absolute;
-    bottom: 21%;
+    bottom: 24.5%; /* Çiftin ayaklarının tam çizgiye oturması sağlandı */
     left: -80px;
-    width: 55px;
-    height: 55px;
+    width: 65px;
+    height: 65px;
+    z-index: 5; /* Katman sırası en üste alındı */
     animation: walkAcross 7s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 #intro-screen .couple-svg {
@@ -121,7 +126,8 @@ body {
     width: 100%;
     height: 25%;
     background: #e0b1cb;
-    border-top: 3px solid rgba(181, 131, 141, 0.4);
+    border-top: 3px solid rgba(181, 131, 141, 0.6);
+    z-index: 3; /* Karakterlerin arkasında, gökyüzünün önünde duracak */
 }
 
 /* Animasyon Bittiğinde Perdenin Yukarı Kayması */
