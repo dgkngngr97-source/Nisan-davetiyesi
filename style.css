@@ -27,106 +27,111 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
-    perspective: 1500px;
+    perspective: 1000px;
 }
 
 .sahne.aktif {
     display: flex;
 }
 
-/* Zarf Ana Kasası */
+/* Zarf Ana Kasası - Ekranda doygun ve büyük durması için boyutlar dengelendi */
 .zarf-wrapper {
     position: relative;
-    width: 90%;
-    max-width: 320px;
-    height: 220px; /* Zarf görsellerine tam uyan yatay alan */
+    width: 100%;
+    max-width: 360px;
+    height: 260px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* --- TAŞMAYI ÖNLEYEN VE KARTI GİZLEYEN AYARLAR --- */
-
-/* Davetiye Kartı */
-.davetiye-kart {
+.zarf-ic {
     position: absolute;
-    width: 82%; 
-    top: 35px; /* Kartı aşağı kaydırarak üstten taşmasını önledik */
-    z-index: 2; /* Ön gövdenin arkasında kalması için */
-    transition: transform 1.5s 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    transform: translateY(0);
-}
-
-.davetiye-kart-img {
     width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 6px;
+    height: 100%;
+    z-index: 1;
 }
 
-/* Zarf Ön Gövdesi (Alt Parça) */
+/* Zarf Görselleri - Ekrana tam yayılması için stretch (fill) yapıldı */
 .zarf-on-img {
     position: absolute;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: fill;
     bottom: 0;
     left: 0;
-    z-index: 4; /* Kartın ve kapağın önünde durarak alttan taşmayı kapatır */
+    z-index: 3;
     pointer-events: none;
 }
 
-/* Zarf Üst Kapağı */
 .zarf-kapak-kasa {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 3; /* Başlangıçta kartın önünde */
+    z-index: 4;
     transform-origin: top center;
-    transition: transform 1.3s ease-in-out;
-    transform-style: preserve-3d;
+    transition: transform 1s ease-in-out;
     pointer-events: none;
 }
 
 .zarf-ust-img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: fill;
 }
 
-/* Mühür */
+/* Mühür - Tam Merkeze ve ideal boyuta sabitlendi */
 .muhur-buton {
     position: absolute;
-    width: 65px;
-    height: 65px;
-    z-index: 5; /* Her şeyin üstünde */
+    width: 75px;
+    height: 75px;
+    z-index: 5;
     cursor: pointer;
-    top: 36%; 
-    left: calc(50% - 32.5px);
-    transition: transform 0.3s ease, opacity 0.5s;
+    top: calc(50% - 37.5px);
+    left: calc(50% - 35px);
+    transition: transform 0.3s ease, opacity 0.4s;
 }
 
 .muhur-buton:hover {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.08) rotate(5deg);
 }
 
 .ac-notu {
     position: absolute;
-    bottom: -50px;
+    bottom: -60px;
     width: 100%;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 1px;
     color: #4a3f35;
 }
 
-/* --- ANIMASYON ANINDAKİ DEĞİŞİMLER --- */
+/* --- KARTIN BAŞLANGIÇTA GİZLENMESİ (SIFIR TAŞMA HİLESİ) --- */
+.davetiye-kart {
+    position: absolute;
+    width: 95%;
+    max-width: 340px;
+    z-index: 2;
+    opacity: 0; /* İlk başta tamamen gizli, taşma şansı sıfır */
+    transform: scale(0.85);
+    transition: transform 1.2s 0.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 1s 0.4s ease;
+    pointer-events: none;
+}
+
+.davetiye-kart-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+}
+
+/* --- MÜHRE BASILDIĞINDA CANLANACAK ŞOV --- */
 .zarf-acildi .zarf-kapak-kasa {
-    transform: rotateX(150deg); 
-    z-index: 1; /* Kapak açılınca arkaya gizlenir */
+    transform: rotateX(160deg);
 }
 
 .zarf-acildi .muhur-buton {
@@ -135,8 +140,9 @@ body {
 }
 
 .zarf-acildi .davetiye-kart {
-    transform: translateY(-260px); /* Kartı yukarı fırlatır */
-    z-index: 10; /* Fırlayınca her şeyin önüne geçer */
+    opacity: 1; /* Kart parlayarak ortaya çıkar */
+    transform: translateY(-160px) scale(1.05); /* Yukarı süzülür ve büyür */
+    z-index: 10;
 }
 
 /* SAHNE 2: DETAYLAR BÖLÜMÜ */
