@@ -1,5 +1,5 @@
 /* ==========================================
-   1. GENEL SİTE VE ANIMASYON AYARLARI
+   1. GENEL SİTE VE YAKIN PLAN ANIMASYON AYARLARI
    ========================================== */
 * {
     margin: 0;
@@ -14,123 +14,107 @@ body {
     overflow-x: hidden;
 }
 
-/* BOHEM GİRİŞ ANIMASYONU ANA EKRANI */
+/* YENİLENEN YAKIN PLAN GİRİŞ EKRANI */
 #intro-screen {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    /* Bohem Gün Batımı Geçiş Renkleri */
-    background: linear-gradient(180deg, #f7ede2 0%, #f5cac3 60%, #f28482 100%);
+    /* Masalsı Bohem Gün Batımı Gökyüzü */
+    background: linear-gradient(180deg, #f7ede2 0%, #f5cac3 50%, #f28482 100%);
     z-index: 999999;
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 1.5s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.5s;
+    transition: transform 1.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 1.8s;
 }
 
-/* Yıldızlar */
+/* Romantik Pırıltılar */
 #intro-screen .stars {
     position: absolute;
     width: 100%;
-    height: 50%;
+    height: 60%;
     top: 0;
-    background-image: radial-gradient(#fff 1.5px, transparent 20px);
-    background-size: 40px 40px;
-    opacity: 0.5;
+    background-image: radial-gradient(#fff 1.5px, transparent 15px);
+    background-size: 50px 50px;
+    opacity: 0.4;
     z-index: 1;
-    animation: bohoTwinkle 3s infinite alternate;
 }
 
-@keyframes bohoTwinkle {
-    0% { opacity: 0.2; }
-    100% { opacity: 0.7; }
-}
-
-/* Havada süzülen pampas esintisi efekti */
-#intro-screen .boho-leaves {
+/* Havada Uçuşan Çiçek Yaprakları */
+#intro-screen .flower-fall {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
     z-index: 2;
-    background-image: 
-        radial-gradient(rgba(181, 131, 141, 0.3) 1px, transparent 15px),
-        radial-gradient(rgba(224, 177, 203, 0.4) 2px, transparent 20px);
-    background-size: 80px 120px;
-    animation: windBlow 8s linear infinite;
+    pointer-events: none;
 }
-
-@keyframes windBlow {
-    0% { background-position: 0px 0px; opacity: 0; }
-    10% { opacity: 0.5; }
-    90% { opacity: 0.5; }
-    100% { background-position: -150px 200px; opacity: 0; }
-}
-
-/* Yenilenen Yel Değirmeni Yerleşimi */
-#intro-screen .windmill {
+#intro-screen .petal {
     position: absolute;
-    bottom: 25%; /* Tam zemin çizgisine basması için ayarlandı */
-    right: 12%;
-    width: 90px;
-    height: 130px;
-    display: flex;
-    justify-content: center;
-    z-index: 4; /* Pembe zeminin üstünde durması için yükseltildi */
+    background: #f28482;
+    border-radius: 15px 2px 15px 15px;
+    opacity: 0.7;
+    animation: petalBlow 7s infinite linear;
 }
-#intro-screen .windmill-svg {
+#intro-screen .petal:nth-child(1) { width: 12px; height: 12px; left: 10%; top: -20px; animation-delay: 0s; }
+#intro-screen .petal:nth-child(2) { width: 16px; height: 14px; left: 30%; top: -20px; animation-delay: 2s; }
+#intro-screen .petal:nth-child(3) { width: 10px; height: 10px; left: 50%; top: -20px; animation-delay: 4s; }
+#intro-screen .petal:nth-child(4) { width: 14px; height: 12px; left: 70%; top: -20px; animation-delay: 1s; }
+#intro-screen .petal:nth-child(5) { width: 15px; height: 15px; left: 85%; top: -20px; animation-delay: 3s; }
+#intro-screen .petal:nth-child(6) { width: 11px; height: 11px; left: 40%; top: -20px; animation-delay: 5s; }
+
+@keyframes petalBlow {
+    0% { transform: translateY(0) rotate(0deg); left: inherit; }
+    100% { transform: translateY(105vh) rotate(720deg); left: calc(inherit + 100px); }
+}
+
+/* 3'LÜ BOZCAADA YEL DEĞİRMENLERİ (BÜYÜTÜLDÜ VE YAKINLAŞTIRILDI) */
+#intro-screen .boframe, #intro-screen .bozcaada-silhouettes {
+    position: absolute;
+    bottom: 22%;
+    width: 100%;
+    max-width: 500px;
+    height: 200px;
+    z-index: 3;
+}
+#intro-screen .mills-svg {
     width: 100%;
     height: 100%;
 }
 
-/* Yel Değirmeni Kanatlarının Dönüşü */
-#intro-screen .windmill-sails {
+/* ÖN PLANDAKİ YAKIN PLAN ROMANTİK ÇİFT (SİYAH SAÇLI) */
+#intro-screen .romantic-couple {
     position: absolute;
-    top: 23px; 
-    left: 50%;
-    width: 140px;
+    bottom: 21%;
+    left: 10%; /* Sola yerleştirildi, değirmenlere doğru bakıyorlar */
+    width: 140px; /* Yakın plan hissi için kocaman yapıldı */
     height: 140px;
-    margin-left: -70px;
-    margin-top: -70px;
     z-index: 5;
-    animation: rotateSails 16s linear infinite;
-}
-
-@keyframes rotateSails {
-    100% { transform: rotate(360deg); }
-}
-
-/* Romantik Çift Giriş Ayarları */
-#intro-screen .couple-walking {
-    position: absolute;
-    bottom: 24.5%; /* Çiftin ayaklarının tam çizgiye oturması sağlandı */
-    left: -80px;
-    width: 65px;
-    height: 65px;
-    z-index: 5; /* Katman sırası en üste alındı */
-    animation: walkAcross 7s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
+    animation: coupleEntrance 4s forwards cubic-bezier(0.1, 0.8, 0.2, 1);
 }
 #intro-screen .couple-svg {
     width: 100%;
     height: 100%;
 }
 
-/* Bohem Toprak Zemin */
+@keyframes coupleEntrance {
+    0% { transform: translateX(-150px); }
+    100% { transform: translateX(0); } /* Sahneye asilce giriş yaparlar */
+}
+
+/* Genişletilmiş Bohem Zemin */
 #intro-screen .ground {
     position: absolute;
     bottom: 0;
     width: 100%;
     height: 25%;
     background: #e0b1cb;
-    border-top: 3px solid rgba(181, 131, 141, 0.6);
-    z-index: 3; /* Karakterlerin arkasında, gökyüzünün önünde duracak */
+    border-top: 4px solid #b5838d;
+    z-index: 4;
 }
 
-/* Animasyon Bittiğinde Perdenin Yukarı Kayması */
 #intro-screen.fade-out {
     transform: translateY(-100%);
     opacity: 0;
@@ -147,7 +131,6 @@ body {
     align-items: center;
 }
 
-/* Sahne 1: Zarf Modu */
 .sahne {
     width: 100%;
     height: 100vh;
@@ -163,7 +146,6 @@ body {
     display: flex;
 }
 
-/* Zarf Ana Kasası */
 .zarf-wrapper {
     position: relative;
     width: 90%;
@@ -182,7 +164,6 @@ body {
     z-index: 1;
 }
 
-/* Zarf Ön Gövdesi (Alt Parça) */
 .zarf-on-img {
     position: absolute;
     width: 100%;
@@ -194,7 +175,6 @@ body {
     pointer-events: none;
 }
 
-/* Zarf Üst Kapağı */
 .zarf-kapak-kasa {
     position: absolute;
     width: 100%;
@@ -213,7 +193,6 @@ body {
     object-fit: fill;
 }
 
-/* Mühür */
 .muhur-buton {
     position: absolute;
     width: 75px;
@@ -240,7 +219,6 @@ body {
     color: #4a3f35;
 }
 
-/* Davetiye Kartı */
 .davetiye-kart {
     position: absolute;
     width: 95%;
@@ -259,7 +237,6 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
-/* Animasyon Tetiklendiğinde */
 .zarf-acildi .zarf-kapak-kasa {
     transform: rotateX(160deg);
 }
@@ -275,7 +252,6 @@ body {
     z-index: 10;
 }
 
-/* SAHNE 2: DETAYLAR BÖLÜMÜ */
 .detay-sahne {
     width: 100%;
     max-width: 420px;
@@ -287,7 +263,6 @@ body {
     position: relative;
 }
 
-/* ANA SABİT İSİM VE DAVET METNİ KARTI STİLİ */
 .ana-baslik-kart {
     background-color: rgba(255, 255, 255, 0.96);
     backdrop-filter: blur(5px);
@@ -321,7 +296,6 @@ body {
     margin-top: 10px;
 }
 
-/* Diğer Kartlar */
 .kose-cicek {
     position: fixed;
     width: 120px; 
