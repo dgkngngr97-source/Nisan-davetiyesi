@@ -65,14 +65,14 @@ body {
     pointer-events: none;
 }
 
-/* --- SİMETRİSİ DÜZELTİLEN ÜST KAPAK --- */
+/* Zarf Üst Kapağı */
 .zarf-kapak-kasa {
     position: absolute;
     width: 100%;
-    height: 105%;         /* Boyutu alt gövdeyle sıfıra sıfır birleşecek şekilde esnetildi */
-    top: -12px;           /* Kapak dikey eksende milimetrik olarak yukarı taşındı */
+    height: 105%;         
+    top: -12px;           
     left: 0;
-    z-index: 4;           /* Başlangıçta ön gövdenin üstünde durur */
+    z-index: 4;           
     transform-origin: top center;
     transition: transform 1s ease-in-out;
     pointer-events: none;
@@ -84,14 +84,14 @@ body {
     object-fit: fill;
 }
 
-/* --- ÇİZGİYE TAM ORTALANAN MÜHÜR --- */
+/* --- TAM KAT DEĞİŞİM ÇİZGİSİNE ORTALANAN MÜHÜR --- */
 .muhur-buton {
     position: absolute;
     width: 75px;
     height: 75px;
-    z-index: 5;           /* Her zaman en üst katmanda */
+    z-index: 5;           
     cursor: pointer;
-    top: 34.5%;           /* Kapak yukarı kayınca tam kesişim çizgisine ortalandı */
+    top: 38%;             /* Mühür, üst kapak ile alt gövdenin birleşim çizgisine tam ortalandı */
     left: calc(50% - 37.5px);
     transition: transform 0.3s ease, opacity 0.4s;
 }
@@ -111,7 +111,7 @@ body {
     color: #4a3f35;
 }
 
-/* Davetiye Kartı (Mühür kapalıyken sıfır taşma hilesi) */
+/* Davetiye Kartı */
 .davetiye-kart {
     position: absolute;
     width: 95%;
@@ -130,7 +130,7 @@ body {
     box-shadow: 0 15px 35px rgba(0,0,0,0.12);
 }
 
-/* --- ANIMASYON ANINDAKİ DEĞİŞİMLER --- */
+/* Animasyon Tetiklendiğinde */
 .zarf-acildi .zarf-kapak-kasa {
     transform: rotateX(160deg);
 }
