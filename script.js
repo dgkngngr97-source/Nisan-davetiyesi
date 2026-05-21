@@ -3,10 +3,8 @@ const zarfSahne = document.getElementById("zarf-sahne");
 const detaySahne = document.getElementById("detay-sahne");
 
 muhurBtn.addEventListener("click", function() {
-    // Zarf açılma animasyonunu tetikle (Kapak döner, kart fırlar)
     zarfSahne.classList.add("zarf-acildi");
     
-    // Kart havada süzüldükten sonra detayları pürüzsüzce ekrana getir
     setTimeout(() => {
         detaySahne.style.display = "block";
         
@@ -16,11 +14,12 @@ muhurBtn.addEventListener("click", function() {
             detaySahne.scrollIntoView({ behavior: "smooth" });
         }, 100);
         
-    }, 2500); // 2.5 saniyelik harika sinematik bekleme süresi
+    }, 2500); 
 });
 
-// Geri Sayım Sayacı
-const hedefTarih = new Date("November 14, 2026 19:00:00").getTime();
+// Tüm tarayıcılarda (Safari/iPhone dahil) hatasız çalışan evrensel ISO formatı
+const hedefTarih = new Date("2026-11-14T19:00:00").getTime();
+
 const sayac = setInterval(() => {
     const simdi = new Date().getTime();
     const fark = hedefTarih - simdi;
@@ -30,10 +29,13 @@ const sayac = setInterval(() => {
     const dakika = Math.floor((fark % (1000 * 60 * 60)) / (1000 * 60));
     const saniye = Math.floor((fark % (1000 * 60)) / 1000);
 
-    document.getElementById("days").innerText = gun < 10 ? "0" + gun : gun;
-    document.getElementById("hours").innerText = saat < 10 ? "0" + saat : saat;
-    document.getElementById("minutes").innerText = dakika < 10 ? "0" + dakika : dakika;
-    document.getElementById("seconds").innerText = saniye < 10 ? "0" + saniye : saniye;
+    // Güncelleme yaparken elementlerin varlığını kontrol et (Hata önleyici)
+    if(document.getElementById("days")) {
+        document.getElementById("days").innerText = gun < 10 ? "0" + gun : gun;
+        document.getElementById("hours").innerText = saat < 10 ? "0" + saat : saat;
+        document.getElementById("minutes").innerText = dakika < 10 ? "0" + dakika : dakika;
+        document.getElementById("seconds").innerText = saniye < 10 ? "0" + saniye : saniye;
+    }
 
     if (fark < 0) {
         clearInterval(sayac);
